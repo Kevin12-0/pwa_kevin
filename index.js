@@ -1,35 +1,17 @@
-console.log("HELLO WORLD");
+const express = require('express');
+const app = express();
+const PORT = process.env.PORT || 9000
+const http = require('http');
+const server = http.createServer(app);
 
-const browserInformation = {
-    name: 'Microsoft Edge',
-    version: 108
-};
 
-localStorage.setItem('browser', JSON.stringify(browserInformation));
+const path = require('path');
 
-const value = localStorage.getItem('browser');
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-self.addEventListener("fetch", event => {
-    async function cacheAndReturnRequest() {
-        // Get the response from the server.
-        const fetchResponse = await fetch(event.request.url);
-        // Open the app's cache.
-        const cache = await caches.open("cache-name");
-        // Put the response in cache.
-        cache.put(event.request.url, fetchResponse.clone());
-        // And return the response.
-        return fetchResponse
-    }
-
-    event.respondWith(cacheAndReturnRequest());
+app.get('/', function (req, res) {
+    res.sendFile(path.join(__dirname + '/templates/index.html'))
 });
 
-if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("../serviceworker.js")
-    .then(registration => {
-        console.log("service worker registred: ", registration);
-    })
-    .catch(error => {
-        console.error("service worker registration failed:", error);
-    });
-}
+server.listen(PORT, () => console.log('listening on port'));
