@@ -25,6 +25,9 @@ router.get("/css", function (req, res) {
 router.get("/manifest", function (req, res) {
     res.sendFile(path.join(__dirname + '/views/manifest.json'));
 });
+
+router.get();
+
 app.use("/", router);
 app.listen(process.env.port || 3000);
 
