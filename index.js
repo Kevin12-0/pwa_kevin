@@ -4,13 +4,12 @@ const path = require('path');
 const router = express.Router();
 
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 
-router.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname,'/views/index.html'));
+router.get('/', function (req, res) {
+    res.sendFile(path.join(__dirname, '/views/index.html'));
 });
 
-app.use("/".router);
+app.use("/", router);
 app.listen(process.env.port || 3000);
-
 
