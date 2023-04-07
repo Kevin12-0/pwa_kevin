@@ -1,4 +1,4 @@
-console.log("No hay problemas de cache");
+console.log("Service Worker instalado");
 
 const registerServiceWorker = async () => {
     if ("serviceWorker" in navigator) {
