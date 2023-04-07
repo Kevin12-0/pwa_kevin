@@ -1,7 +1,7 @@
 {
-  "name": "pwa-proyecto",
-  "short_name": "pwa-proyecto",
-  "theme_color": "#4DBA87",
+  "name": "Novedes el Inge",
+  "short_name": "Chicharrones",
+  "theme_color": "#000000",
   "icons": [
     {
       "src": "./img/icons/android-chrome-192x192.png",
