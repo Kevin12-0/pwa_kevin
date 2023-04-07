@@ -1,4 +1,4 @@
-function pedidoNoticación() {
+function pedidoNoticaction() {
     //Vamos a comprobar si el navegador es compatible con las notificaciones
     if (!("Notification" in window)) {
         alert("This browser does not support desktop notification");
