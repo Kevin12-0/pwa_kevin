@@ -1,24 +1,37 @@
 function pedidoNoticación() {
-    if (window.Notification) {
-        Notification.requestPermission().then(function (permission) {
-            if (permission === 'granted') {
-                var options = {
-                    body: 'Esta es una notificación de prueba',
-                    icon: 'icon.png',
-                    actions: [
-                        { action: 'ver', title: 'Ver' },
-                        { action: 'cancelar', title: 'Cancelar' }
-                    ]
-                };
-                var notification = new Notification('Título de la notificación', options);
-                notification.addEventListener('click', function () {
-                    window.open('');
-                    notification.close();
-                });
-                setTimeout(function () {
-                    notification.close();
-                }, 5000);
+    //Vamos a comprobar si el navegador es compatible con las notificaciones
+    if (!("Notification" in window)) {
+        alert("This browser does not support desktop notification");
+    }
+    // Vamos a ver si ya se han concedido permisos de notificación
+    else if (Notification.permission === "granted") {
+        // Si está bien vamos a crear una notificación
+        var body = "Hola";
+        var icon = "https://www.quecodigo.com/img/qc_logo.jpg";
+        var title = "Notificación";
+        var options = {
+            body: body,
+            icon: icon,
+            lang: "ES",
+            renotify: "true"
+        }
+        var notification = new Notification(title, options);
+        var audio = new Audio('https://www.quecodigo.com/web/antigua/sounds/notificacion.mp3');
+        audio.play();
+        notification.onclick = function () {
+            //action
+        };
+        setTimeout(notification.close.bind(notification), 5000);
+    }
+    // De lo contrario, tenemos que pedir permiso al usuario
+    else if (Notification.permission !== 'denied') {
+        Notification.requestPermission(function (permission) {
+            // Si el usuario acepta, vamos a crear una notificación
+            if (permission === "granted") {
+                var notification = new Notification("Gracias, Ahora podras recibir notifiaciones de nuestra página");
             }
         });
     }
+    // Por fin, si el usuario ha denegado notificaciones, y usted
+    // Quiere ser respetuoso no hay necesidad de preocuparse más sobre ellos.
 }
