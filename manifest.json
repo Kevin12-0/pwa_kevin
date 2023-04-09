@@ -1,7 +1,7 @@
 {
   "name": "Novedes el Inge",
   "short_name": "Chicharrones",
-  "theme_color": "#000000",
+  "theme_color": "#1630BE",
   "icons": [
     {
       "src": "./img/icons/android-chrome-192x192.png",
@@ -28,5 +28,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
+  "display_override": ["window-controls-overlay"],
   "background_color": "#000000"
 }
